@@ -1,0 +1,90 @@
+# em-eigensolver 默认配置
+# 面向电磁谐振仿真的非正定厄密稀疏矩阵特征值求解器
+
+# 求解器类型: auto | lanczos | krylov_schur | jacobi_davidson | lobpcg
+solver: auto
+
+# 需要求解的特征值个数（目标谐振模式数）
+n_eigenvalues: 6
+
+# 目标类型: target | smallest_magnitude | largest_magnitude | closest
+which: target
+
+# 位移策略（目标频段）
+shift:
+  # 目标位移（目标频率）。None 表示自动选择
+  sigma: null
+  # 目标频段 [lo, hi]，用于捕获该频段内的谐振模式
+  target_band: null
+  # 位移策略: fixed | adaptive | rayleigh | wilkinson
+  strategy: adaptive
+  # 自适应位移更新方式: rayleigh_quotient | harmonic | spectrum
+  adaptive_mode: rayleigh_quotient
+  # 自适应位移更新阻尼因子
+  damping: 0.5
+  # 位移更新最小/最大步长
+  min_step: 1.0e-6
+  max_step: 1.0e3
+  # 近奇异保护阈值
+  near_singular_threshold: 1.0e12
+  # 是否启用近奇异保护
+  near_singular_protection: true
+
+# 收敛控制
+convergence:
+  # 相对残差阈值
+  tol: 1.0e-8
+  # 特征值相对变化阈值
+  tol_eigval: 1.0e-10
+  # 最大迭代次数
+  max_iter: 1000
+  # 最大内迭代次数
+  max_inner_iter: 30
+  # 最大重启次数
+  max_restarts: 50
+  # 收敛后额外验证次数
+  verify_steps: 2
+  # 是否启用自适应迭代策略
+  adaptive: true
+  # 停滞检测窗口
+  stagnation_window: 10
+  # 停滞阈值
+  stagnation_tol: 1.0e-3
+
+# 并行后端
+parallel:
+  # 后端: cpu | threads | mpi | gpu | auto
+  backend: auto
+  # 线程数（None 使用 BLAS 默认）
+  num_threads: null
+  # 是否启用 GPU
+  use_gpu: false
+  # GPU 设备编号
+  gpu_device: 0
+  # 内存峰值上限（字节，None 不限制）
+  memory_limit: null
+  # 是否允许降级
+  allow_fallback: true
+
+# 预处理
+preprocessing:
+  # 对角缩放
+  scale: true
+  # 平衡（对非对称矩阵）
+  balance: false
+  # 按特征值排序
+  sort: true
+  # 是否使用位移求逆
+  shift_invert: false
+
+# 安全
+security: true
+
+# 随机种子（可复现性）
+seed: 42
+
+# 是否输出诊断信息
+verbose: true
+
+# 日志级别
+log_level: INFO
