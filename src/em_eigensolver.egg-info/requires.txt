@@ -1,0 +1,14 @@
+numpy>=1.21
+scipy>=1.7
+pyyaml>=5.4
+
+[parallel]
+mpi4py>=3.0
+numba>=0.55
+
+[plot]
+matplotlib>=3.4
+
+[test]
+pytest>=6.0
+pytest-benchmark>=3.4
