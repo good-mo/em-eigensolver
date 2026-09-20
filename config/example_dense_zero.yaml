@@ -1,0 +1,27 @@
+# 示例配置：零附近密集谱（低频击穿）场景
+# 用法: em-eig solve dense_zero.npz --config config/example_dense_zero.yaml
+
+solver: lobpcg
+n_eigenvalues: 8
+which: smallest_magnitude
+
+shift:
+  sigma: 0.0
+  strategy: fixed
+  near_singular_protection: true
+
+convergence:
+  tol: 1.0e-7
+  max_iter: 2000
+  max_restarts: 100
+
+parallel:
+  backend: auto
+  num_threads: 8
+
+preprocessing:
+  scale: true
+  sort: true
+
+seed: 42
+verbose: true
