@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: em-eigensolver
+Version: 0.1.0
+Summary: 面向电磁谐振与微波器件仿真的高效、稳定大规模非正定厄密稀疏矩阵特征值求解方案
+Author: EM Eigensolver Team
+License: Apache-2.0
+Keywords: eigenvalue,hermitian,sparse,electromagnetic,resonance,krylov,jacobi-davidson,lobpcg
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Scientific/Engineering :: Physics
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.21
+Requires-Dist: scipy>=1.7
+Requires-Dist: pyyaml>=5.4
+Provides-Extra: parallel
+Requires-Dist: mpi4py>=3.0; extra == "parallel"
+Requires-Dist: numba>=0.55; extra == "parallel"
+Provides-Extra: test
+Requires-Dist: pytest>=6.0; extra == "test"
+Requires-Dist: pytest-benchmark>=3.4; extra == "test"
+Provides-Extra: plot
+Requires-Dist: matplotlib>=3.4; extra == "plot"
