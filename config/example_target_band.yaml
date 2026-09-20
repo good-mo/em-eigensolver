@@ -1,0 +1,30 @@
+# 示例配置：目标频段求解（电磁谐振）
+# 用法: em-eig solve cavity.npz --config config/example_target_band.yaml
+
+solver: krylov_schur
+n_eigenvalues: 6
+which: target
+
+shift:
+  # 目标频段（谐振频率范围）
+  target_band: [10.0, 20.0]
+  strategy: adaptive
+  adaptive_mode: rayleigh_quotient
+  damping: 0.5
+  near_singular_protection: true
+
+convergence:
+  tol: 1.0e-8
+  max_iter: 1000
+  max_restarts: 50
+
+parallel:
+  backend: auto
+  num_threads: 8
+
+preprocessing:
+  scale: true
+  sort: true
+
+seed: 42
+verbose: true
