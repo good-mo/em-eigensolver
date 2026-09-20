@@ -1,0 +1,32 @@
+# 示例配置：近奇异位移（目标频率非常接近谐振点）场景
+# 用法: em-eig solve cavity.npz --config config/example_near_singular.yaml
+
+solver: jacobi_davidson
+n_eigenvalues: 4
+which: target
+
+shift:
+  # 目标位移非常接近某个谐振点（近奇异）
+  sigma: 12.0000001
+  strategy: adaptive
+  adaptive_mode: rayleigh_quotient
+  damping: 0.3
+  near_singular_threshold: 1.0e10
+  near_singular_protection: true
+
+convergence:
+  tol: 1.0e-8
+  max_iter: 500
+  max_inner_iter: 30
+  max_restarts: 30
+
+parallel:
+  backend: auto
+  num_threads: 8
+
+preprocessing:
+  scale: true
+  sort: true
+
+seed: 42
+verbose: true
