@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "em-eigensolver"
+version = "0.1.0"
+description = "面向电磁谐振与微波器件仿真的高效、稳定大规模非正定厄密稀疏矩阵特征值求解方案"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "Apache-2.0" }
+authors = [{ name = "EM Eigensolver Team" }]
+keywords = ["eigenvalue", "hermitian", "sparse", "electromagnetic", "resonance", "krylov", "jacobi-davidson", "lobpcg"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+
+dependencies = [
+    "numpy>=1.21",
+    "scipy>=1.7",
+    "pyyaml>=5.4",
+]
+
+[project.optional-dependencies]
+# 并行/加速可选依赖
+parallel = [
+    "mpi4py>=3.0",
+    "numba>=0.55",
+]
+# 测试依赖
+test = [
+    "pytest>=6.0",
+    "pytest-benchmark>=3.4",
+]
+# 绘图依赖（用于文档/诊断可视化）
+plot = [
+    "matplotlib>=3.4",
+]
+
+[project.scripts]
+em-eig = "em_eigensolver.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q"
